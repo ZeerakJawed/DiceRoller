@@ -8,10 +8,13 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -57,13 +60,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void on_button_click(View view) {
+
+        EditText editText = (EditText) findViewById(R.id.editText);
+        Log.i("UserInputNumber", editText.getText().toString());
+        String numin = (editText.getText().toString());
+        int numint = Integer.parseInt(numin);
+
+
         TextView tv = this.findViewById(R.id.NumberTextView);
         Random r = new Random();
         int number = r.nextInt(6);
 
-        tv.setText(Integer.toString (number));
+        tv.setText(Integer.toString(number));
+
+        check(numint, number);
+
 
     }
+
+
+
+    public void check(int a, int b){
+
+        if (a == b) {
+            Toast.makeText(MainActivity.this, "CONGRATULATIONS", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Try again :-(", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+
+
 }
 
 
